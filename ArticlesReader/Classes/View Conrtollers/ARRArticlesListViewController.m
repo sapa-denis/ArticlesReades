@@ -17,6 +17,7 @@
 #import "AppDelegate.h"
 
 #import <SDWebImage/UIImageView+WebCache.h>
+#import <AFNetworking/AFNetworkReachabilityManager.h>
 
 @interface ARRArticlesListViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -60,25 +61,31 @@
 	
 	[self.tableView addSubview:self.refreshControl];
 	[self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-	[super viewWillAppear:animated];
 	
 	[[ARRAPIProvider sharedProvider] getArticlesWithSuccess:^(NSArray *result) {
 	} failure:^(NSError *error) {
 	}];
 }
 
+
 - (void)reloadArticles
 {
-	__weak typeof(self) weakSelf = self;
-	[[ARRAPIProvider sharedProvider] getArticlesWithSuccess:^(NSArray *result) {
-		[weakSelf.refreshControl endRefreshing];
-	} failure:^(NSError *error) {
-		[weakSelf.refreshControl endRefreshing];
-	}];
+	if ([[AFNetworkReachabilityManager sharedManager] isReachable]) {
+		__weak typeof(self) weakSelf = self;
+		[[ARRAPIProvider sharedProvider] getArticlesWithSuccess:^(NSArray *result) {
+			[weakSelf.refreshControl endRefreshing];
+		} failure:^(NSError *error) {
+			[weakSelf.refreshControl endRefreshing];
+		}];
+	} else {
+		[[[UIAlertView alloc] initWithTitle:@"No Internet connection"
+									message:nil
+								   delegate:nil
+						  cancelButtonTitle:@"OK"
+						  otherButtonTitles:nil]
+		 show];
+		[self.refreshControl endRefreshing];
+	}
 }
 
 #pragma mark - UITableViewDataSource

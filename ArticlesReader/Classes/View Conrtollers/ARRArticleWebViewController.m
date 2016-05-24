@@ -80,8 +80,6 @@
 	} else {
 		[self presentViewController:activity animated:YES completion:nil];
 	}
-	
-
 }
 
 @end
