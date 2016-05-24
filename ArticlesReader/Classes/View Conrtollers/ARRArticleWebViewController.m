@@ -45,6 +45,23 @@
 - (IBAction)shareButtonTouchUp:(id)sender
 {
 	__weak typeof(self) weakSelf = self;
+	
+	
+	UIActivityViewController *activity =
+	[[UIActivityViewController alloc] initWithActivityItems:@[self.article.contentURLString]
+									  applicationActivities:nil];
+	
+	
+	NSArray *excludeActivities = @[UIActivityTypeAirDrop,
+								   UIActivityTypePrint,
+								   UIActivityTypeAssignToContact,
+								   UIActivityTypeSaveToCameraRoll,
+								   UIActivityTypePostToFlickr,
+								   UIActivityTypePostToVimeo];
+	
+	activity.excludedActivityTypes = excludeActivities;
+	
+	if ([[AFNetworkReachabilityManager sharedManager] isReachable]) {
 	SDWebImageDownloader *downloader = [SDWebImageDownloader sharedDownloader];
 	[downloader downloadImageWithURL:[NSURL URLWithString:self.article.imageURLString]
 							 options:0
@@ -53,23 +70,17 @@
 							   if (image && finished) {
 								   NSArray *activityItems = @[image, weakSelf.article.contentURLString];
 								   
+
 								   UIActivityViewController *activity =
 								   [[UIActivityViewController alloc] initWithActivityItems:activityItems
 																	 applicationActivities:nil];
-								   
-								   
-								   NSArray *excludeActivities = @[UIActivityTypeAirDrop,
-																  UIActivityTypePrint,
-																  UIActivityTypeAssignToContact,
-																  UIActivityTypeSaveToCameraRoll,
-																  UIActivityTypePostToFlickr,
-																  UIActivityTypePostToVimeo];
-								   
-								   activity.excludedActivityTypes = excludeActivities;
-								   
-								   [self presentViewController:activity animated:YES completion:nil];
+								   [weakSelf presentViewController:activity animated:YES completion:nil];
 							   }
 						   }];
+	} else {
+		[self presentViewController:activity animated:YES completion:nil];
+	}
+	
 
 }
 
