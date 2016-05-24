@@ -28,7 +28,7 @@
 	return sharedProvider;
 }
 
-- (void)getArticlesWithSuccess:(void (^)(id result))success
+- (void)getArticlesWithSuccess:(void (^)())success
 					   failure:(void (^)(NSError *error))failure
 {
 	[self.requestController getArticlesWithSuccess:success failure:failure];

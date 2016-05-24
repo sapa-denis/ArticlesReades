@@ -10,6 +10,6 @@
 
 @interface ARRActilesImportController : NSObject
 
-- (void)importResponse:(NSArray *)responseObject withSuccess:(void (^)(id result))success;
+- (void)importResponse:(NSArray *)responseObject withSuccess:(void (^)())success;
 
 @end

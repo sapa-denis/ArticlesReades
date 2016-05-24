@@ -62,7 +62,7 @@
 	[self.tableView addSubview:self.refreshControl];
 	[self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
 	
-	[[ARRAPIProvider sharedProvider] getArticlesWithSuccess:^(NSArray *result) {
+	[[ARRAPIProvider sharedProvider] getArticlesWithSuccess:^{
 	} failure:^(NSError *error) {
 	}];
 }
@@ -72,7 +72,7 @@
 {
 	if ([[AFNetworkReachabilityManager sharedManager] isReachable]) {
 		__weak typeof(self) weakSelf = self;
-		[[ARRAPIProvider sharedProvider] getArticlesWithSuccess:^(NSArray *result) {
+		[[ARRAPIProvider sharedProvider] getArticlesWithSuccess:^{
 			[weakSelf.refreshControl endRefreshing];
 		} failure:^(NSError *error) {
 			[weakSelf.refreshControl endRefreshing];

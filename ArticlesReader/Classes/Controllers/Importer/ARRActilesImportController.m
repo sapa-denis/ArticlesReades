@@ -31,7 +31,7 @@
 	return self;
 }
 
-- (void)importResponse:(NSArray *)responseObject withSuccess:(void (^)(id result))success
+- (void)importResponse:(NSArray *)responseObject withSuccess:(void (^)())success
 {
 	FEMMapping *mapping = [ARRArticle defaultMapping];
 	NSArray *articles = [FEMDeserializer collectionFromRepresentation:responseObject

@@ -28,9 +28,14 @@
 {
 	NSString *filePath = [ARRBackgroundHTMLCacheController documentFilePathWithID:articleID];
 	
+	NSError *error = nil;
 	NSString *htmlString = [NSString stringWithContentsOfFile:filePath
 													 encoding:NSUTF8StringEncoding
-														error:nil];
+														error:&error];
+	
+	if (error) {
+		NSLog(@"%@ %@",NSStringFromSelector(_cmd), error.localizedDescription);
+	}
 	return htmlString;
 }
 

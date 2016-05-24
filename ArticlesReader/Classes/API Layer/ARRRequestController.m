@@ -33,7 +33,7 @@ static NSString *const kARRBaseURL = @"http://madiosgames.com/api/v1/application
 	return self;
 }
 
-- (void)getArticlesWithSuccess:(void (^)(id result))success
+- (void)getArticlesWithSuccess:(void (^)())success
 					   failure:(void (^)(NSError *error))failure
 {
 	ARRGetArticlesHTTPRequest *getArticles = [ARRGetArticlesHTTPRequest new];

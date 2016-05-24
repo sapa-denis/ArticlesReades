@@ -12,7 +12,7 @@
 
 + (ARRAPIProvider *)sharedProvider;
 
-- (void)getArticlesWithSuccess:(void (^)(id result))success
+- (void)getArticlesWithSuccess:(void (^)())success
 					   failure:(void (^)(NSError *error))failure;
 
 @end
