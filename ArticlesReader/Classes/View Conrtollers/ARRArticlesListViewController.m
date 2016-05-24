@@ -90,10 +90,6 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-//	NSInteger count = [self.dataSource countInSection:section];
-//	BOOL isEmpty = count == 0;
-//	[self.tableView setHidden:isEmpty];
-//	[self.noDataImage setHidden:!isEmpty];
 	return [self.dataSource countInSection:section];
 }
 
