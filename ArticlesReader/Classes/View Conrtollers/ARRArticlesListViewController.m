@@ -70,6 +70,7 @@
 
 - (void)reloadArticles
 {
+	[[AFNetworkReachabilityManager sharedManager] startMonitoring];
 	if ([[AFNetworkReachabilityManager sharedManager] isReachable]) {
 		__weak typeof(self) weakSelf = self;
 		[[ARRAPIProvider sharedProvider] getArticlesWithSuccess:^{
