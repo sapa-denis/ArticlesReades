@@ -32,6 +32,7 @@
 	self.navigationItem.title = self.article.title;
 	
 	if (self.article) {
+		[[AFNetworkReachabilityManager sharedManager] startMonitoring];
 		if ([[AFNetworkReachabilityManager sharedManager] isReachable]) {
 			[self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.article.contentURLString]]];
 		} else {
