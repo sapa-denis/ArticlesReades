@@ -1,0 +1,16 @@
+//
+//  ArticlesReader-Prefix.pch
+//  ArticlesReader
+//
+//  Created by Sapa Denys on 23.05.16.
+//  Copyright © 2016 Sapa Denys. All rights reserved.
+//
+
+#ifndef ArticlesReader_Prefix_pch
+#define ArticlesReader_Prefix_pch
+
+#import <UIKit/UIKit.h>
+#import <CoreData/CoreData.h>
+
+
+#endif /* ArticlesReader_Prefix_pch */

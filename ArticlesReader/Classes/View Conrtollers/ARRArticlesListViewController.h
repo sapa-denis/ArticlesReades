@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  ARRArticlesListViewController.h
 //  ArticlesReader
 //
 //  Created by Sapa Denys on 20.05.16.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
+@interface ARRArticlesListViewController : UIViewController
 
 @end
-
